@@ -1,11 +1,11 @@
 services:
   localstack:
-    image: localstack/localstack
+    image: localstack/localstack:3.2.0
     ports:
       - "4566:4566"
-      - "4571:4571"
     environment:
-      - SERVICES=s3,sqs,cloudwatch,lambda,dynamodb,sns
+      - SERVICES=s3,sqs,cloudwatch,logs,dynamodb,sns
       - DEFAULT_REGION=us-east-1
     volumes:
       - "./localstack_data:/var/lib/localstack"
+      - "./init.sh:/etc/localstack/init/ready.d/init.sh"
